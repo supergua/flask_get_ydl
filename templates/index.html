@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="20">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>氧动力游泳池含氯量</title>
+</head>
+<body>
+    <h1>氧动力游泳池含氯量展示（最近5条记录）</h1>
+    <table align="center">
+        <tr>
+            <th width="60%">记录时间</th>
+            <th width="40%">含氯量</th>
+        </tr>
+        {% for key in last5  %}
+        <tr>
+            <td width="60%">{{ key[0] }}</td>
+            {% if (key[1]< 0.3) or (key[1] > 0.6) %}
+                <td width="40%"><span style="color:red;">{{ key[1] }} mg/L</span></td>
+            {% else %}
+                <td width="40%">{{ key[1] }} mg/L</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tr>
+    </table>
+</body>
+</html>
